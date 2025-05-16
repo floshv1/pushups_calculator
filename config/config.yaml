@@ -15,9 +15,13 @@ coefficients_opgg:
     max: 7
     coefficient: 1.25 # Légère pénalité
   faible:
-    min: 0
+    min: 1
     max: 5
     coefficient: 1.5  # Punition modérée
+  tres_faible:
+    min: 0
+    max: 1
+    coefficient: 2    # Punition sévère
 
 # Objectifs épiques
 objectifs_epiques:
@@ -38,13 +42,13 @@ objectifs_secondaires:
     bonus: -4
   dragons:
     nom: "Dragons"
-    bonus: -3
+    bonus: -2
   grubs:
     nom: "Grubs"
     bonus: -2
   tour:
     nom: "Tour"
-    bonus: -2
+    bonus: -1
 
 # Bonus des bottes triomphantes
 bottes_triompantes:

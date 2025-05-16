@@ -34,7 +34,7 @@ def save_to_history(entry, path=HISTORY_PATH):
     history = load_history(path)
 
     # Ajout du timestamp
-    entry['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    entry['date'] = datetime.today().strftime("%Y-%m-%d")
     
     # Générer une empreinte unique pour éviter les doublons
     entry_hash = compute_entry_hash(entry)
@@ -52,3 +52,9 @@ def save_to_history(entry, path=HISTORY_PATH):
         json.dump(history, f, indent=4)
 
     print("✅ Entrée ajoutée à l'historique.")
+
+def read_history():
+    if os.path.exists(HISTORY_PATH):
+        with open(HISTORY_PATH, "r") as f:
+            return json.load(f)
+    return []

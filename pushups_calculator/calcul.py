@@ -21,9 +21,17 @@ def calculate_pushups(performance, objectives, note_opgg, config, debug=False):
     boots_bonus = config['bottes_triompantes']['bonus']
 
     # Étape 1 : Morts × pénalité
-    total = performance['morts'] * mort_penalty
+    total_death = performance['morts'] * mort_penalty
     if debug:
-        print(f"Morts: {performance['morts']} × {mort_penalty} = {total}")
+        print(f"Morts: {performance['morts']} × {mort_penalty} = {total_death}")
+
+    rate = get_opgg_coefficient(note_opgg)
+    total = total_death* rate
+
+    if debug:
+        print(f"Coefficient OP.GG : ×{rate} → {total_death} × {rate} = {total}")
+
+    
 
     # Étape 2 : - (Kills + Assists)
     kill_assist_total = (performance['kills'] + performance['assists'])
@@ -55,14 +63,10 @@ def calculate_pushups(performance, objectives, note_opgg, config, debug=False):
         total += boots_bonus
         if debug:
             print(f"Bottes triomphantes : {boots_bonus}")
-
-    # Étape 5 : Application du coefficient OP.GG
-    rate = get_opgg_coefficient(note_opgg)
-    final_total = int(round(total * rate))
+    
+    final_total = int(round(total))
     if debug:
-        print(f"Coefficient OP.GG : ×{rate} → {total} × {rate} = {final_total}")
+        print(f"Total final : {final_total}")
 
-    final_total = min(final_total, 30)
-
-    return max(final_total, 0)
+    return final_total
 
