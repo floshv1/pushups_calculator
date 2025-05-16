@@ -10,6 +10,7 @@ venv/
 .env/
 
 # Fichiers de configuration ou données locales
+data/historique.json
 
 # Fichiers système
 .DS_Store
