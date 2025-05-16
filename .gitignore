@@ -1,0 +1,18 @@
+# Ignorer les fichiers compilés Python
+__pycache__/
+*.py[cod]
+
+# Caches de tests pytest
+.pytest_cache/
+
+# Environnement virtuel (si jamais tu en as un)
+venv/
+.env/
+
+# Fichiers de configuration ou données locales
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+structure.txt

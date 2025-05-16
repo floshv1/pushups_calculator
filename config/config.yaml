@@ -1,0 +1,59 @@
+# config.yaml
+
+# Coefficients de la note OP.GG
+coefficients_opgg:
+  excellente:
+    min: 8.5
+    max: 10
+    coefficient: 0.5  # Réduction
+  bonne:
+    min: 7
+    max: 8.5
+    coefficient: 1    # Normal
+  moyenne:
+    min: 5
+    max: 7
+    coefficient: 1.25 # Légère pénalité
+  faible:
+    min: 0
+    max: 5
+    coefficient: 1.5  # Punition modérée
+
+# Objectifs épiques
+objectifs_epiques:
+  elder_dragon:
+    nom: "Elder"
+    bonus: -7  
+  baron:
+    nom: "Baron"
+    bonus: -6
+  atakhan:
+    nom: "Atakhan"
+    bonus: -5
+
+# Objectifs secondaires
+objectifs_secondaires:
+  herald:
+    nom: "Herald"
+    bonus: -4
+  dragons:
+    nom: "Dragons"
+    bonus: -3
+  grubs:
+    nom: "Grubs"
+    bonus: -2
+  tour:
+    nom: "Tour"
+    bonus: -2
+
+# Bonus des bottes triomphantes
+bottes_triompantes:
+  nom: "Bottes Triomphantes"
+  bonus: -5  
+
+# Performances individuelles
+performances_individuelles:
+  kill_assist:
+    bonus: -1  # Pompes en moins pour chaque kill ou assist
+  mort:
+    penalite: 5  # Pompes en plus pour chaque mort
