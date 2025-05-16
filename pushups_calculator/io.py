@@ -5,7 +5,7 @@ from datetime import datetime
 import hashlib
 
 MAX_HISTORY_ENTRIES = 100
-HISTORY_PATH = "data/historique.json"
+HISTORY_PATH = "data/history.json"
 
 filepath = "/config/config.yaml"
 absolute_path = os.path.abspath(os.getcwd() + filepath) 
