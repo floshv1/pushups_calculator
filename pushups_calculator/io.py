@@ -7,7 +7,7 @@ import hashlib
 MAX_HISTORY_ENTRIES = 100
 HISTORY_PATH = "data/history.json"
 
-filepath = "/config/config.yaml"
+filepath = "/config/config_parameter.yaml"
 absolute_path = os.path.abspath(os.getcwd() + filepath) 
 
 def load_config(file_path = absolute_path):
