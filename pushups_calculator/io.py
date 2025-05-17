@@ -2,7 +2,7 @@ import json
 import os
 import yaml
 from datetime import datetime
-import hashlib
+
 
 MAX_HISTORY_ENTRIES = 100
 HISTORY_PATH = "data/history.json"
@@ -21,27 +21,16 @@ def load_history(path=HISTORY_PATH):
     with open(path, 'r') as f:
         return json.load(f)
 
-def compute_entry_hash(entry):
-    """Crée une signature unique à partir de la performance et des objectifs"""
-    entry_str = json.dumps({
-        'performance': entry.get('performance', {}),
-        'objectives': entry.get('objectives', {}),
-        'note_opgg': entry.get('note_opgg', 0)
-    }, sort_keys=True)
-    return hashlib.sha256(entry_str.encode()).hexdigest()
-
 def save_to_history(entry, path=HISTORY_PATH):
+    from pushups_calculator.utils import generate_incremental_id
     history = load_history(path)
 
     # Ajout du timestamp
     entry['date'] = datetime.today().strftime("%Y-%m-%d")
     
-    # Générer une empreinte unique pour éviter les doublons
-    entry_hash = compute_entry_hash(entry)
-    if any(compute_entry_hash(e) == entry_hash for e in history):
-        print("⚠️  Entrée déjà présente dans l'historique. Ignorée.")
-        return
-
+    # Générer un ID unique incrémental
+    entry['entry_id'] = generate_incremental_id(history)
+    
     history.append(entry)
 
     # Limite le nombre d’entrées
@@ -51,7 +40,7 @@ def save_to_history(entry, path=HISTORY_PATH):
     with open(path, 'w') as f:
         json.dump(history, f, indent=4)
 
-    print("✅ Entrée ajoutée à l'historique.")
+    print(f"✅ Entrée ajoutée à l'historique avec ID {entry['entry_id']}.")
 
 def read_history():
     if os.path.exists(HISTORY_PATH):
